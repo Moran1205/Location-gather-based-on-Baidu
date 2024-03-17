@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CloudBDConnection {
-    private static final String driver = "${yourdiver}";
-    private static final String url = "${yoururl}";
-    private static final String userName = "${youruserName}";
-    private static final String password = "${yourpassword}";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String url = "jdbc:mysql://rm-cn-nwy3mysqr000ftpo.rwlb.rds.aliyuncs.com:3306/test";
+    private static final String userName = "wxf";
+    private static final String password = "362426WxF!!07";
     public static Connection getConnection() {
         Connection connection = null;
         try{
@@ -106,7 +106,7 @@ public class CloudBDConnection {
         }
 
         try{
-            String sql = "SELECT * FROM user WHERE username=? AND password=?";
+            String sql = "SELECT * FROM android WHERE username=? AND password=?";
             boolean result = false;
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ps.setString(1, userName);

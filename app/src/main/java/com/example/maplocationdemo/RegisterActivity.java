@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable @androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.pre_activity_register);
 
         username = findViewById(R.id.register_username);
         password = findViewById(R.id.register_password);

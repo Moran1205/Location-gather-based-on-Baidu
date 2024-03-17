@@ -49,7 +49,6 @@
 
 
 
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -58,7 +57,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JustBaiDuMapLocationDemo">
-        <activity android:name=".MainActivity"
+        <activity android:name=".LoginInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +75,7 @@
             android:process=":remote" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="使用自己申请的百度key码" />
+            android:value="YDGtJDUYCcnmdtNGZjfPN3jgO1XypLqk" />
 
         <activity android:name=".baidu.location.BaiDuLocationActivity"
             android:exported="true" />
@@ -85,6 +84,8 @@
         <activity android:name=".baidu.background.BackgroundLocationActivity"
             android:exported="true"
             android:foregroundServiceType="location"/>
+        <activity android:name=".RegisterActivity"
+            android:exported="true" />
 
     </application>
 
