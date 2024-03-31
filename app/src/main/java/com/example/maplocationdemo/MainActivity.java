@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.maplocationdemo.Notification.BasicNotification.Basic;
+import com.example.maplocationdemo.Notification.ProgressNotification.Progress;
 import com.example.maplocationdemo.baidu.background.BackgroundLocationActivity;
 import com.example.maplocationdemo.baidu.location.BaiDuLocationActivity;
 import com.example.maplocationdemo.baidu.map.BaiDuMapActivity;
@@ -53,6 +55,17 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BackgroundLocationActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        Button bt_Notification = findViewById(R.id.bt_baidu_Notification);
+        bt_Notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Basic basic = new Basic();
+                basic.showBasicNotification(MainActivity.this);
+                Progress progress = new Progress();
+                progress.showProgressNotification(MainActivity.this,100,60);
             }
         });
     }
@@ -116,6 +129,7 @@ public class MainActivity extends Activity {
         // TODO Auto-generated method stub
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 
 
 

@@ -1,20 +1,16 @@
 package com.example.maplocationdemo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.QuickContactBadge;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.maplocationdemo.DataBase.Connection.CloudBDConnection;
-
-import java.sql.SQLException;
+import com.example.maplocationdemo.DataBase.Connection.LoginTask;
+import com.example.maplocationdemo.DataBase.User;
 
 public class LoginInActivity extends AppCompatActivity {
     private EditText username;
@@ -31,20 +27,17 @@ public class LoginInActivity extends AppCompatActivity {
         password = findViewById(R.id.login_password);
         bt_sign_in = findViewById(R.id.login_button_sign_in);
         bt_sign_up = findViewById(R.id.login_button_sign_up);
+        User user = new User();
+
 
         bt_sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    boolean isSuccessfulLogin = CloudBDConnection.select_user_info(
-                            username.getText().toString(), password.getText().toString());
-                    if(isSuccessfulLogin){
-                        Intent intentLoginIn = new Intent(LoginInActivity.this, MainActivity.class);
-                        startActivity(intentLoginIn);
-                    }else{
-                        Toast.makeText(LoginInActivity.this, "账号密码错误！请重新输入", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (SQLException e) {
+                    user.setUsername(username.getText().toString());
+                    user.setPassword(password.getText().toString());
+                    new LoginTask(user,LoginInActivity.this).execute();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

@@ -13,6 +13,9 @@ public class User {
         return username;
     }
 
+    public User() {
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

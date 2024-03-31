@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.maplocationdemo.DataBase.Connection.CloudBDConnection;
+import com.example.maplocationdemo.DataBase.Connection.LoginTask;
+import com.example.maplocationdemo.DataBase.Connection.RegisterTask;
 import com.example.maplocationdemo.DataBase.User;
 
 import java.sql.SQLException;
@@ -31,20 +33,15 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.register_password);
         rePassword = findViewById(R.id.register_rePassword);
         bt_register = findViewById(R.id.register_button_sign_up);
+        User user = new User();
 
 
         bt_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    CloudBDConnection.insert_user_info(username.getText().toString(),password.getText().toString());
-                    Toast.makeText(RegisterActivity.this, "注册成功！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this,LoginInActivity.class);
-                    startActivity(intent);
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                user.setUsername(username.getText().toString());
+                user.setPassword(password.getText().toString());
+                new RegisterTask(user,RegisterActivity.this).execute();
             }
         });
     }

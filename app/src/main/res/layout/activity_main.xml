@@ -23,4 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="后台持续定位" />
+    <Button
+        android:id="@+id/bt_baidu_Notification"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="通知栏" />
 </LinearLayout>

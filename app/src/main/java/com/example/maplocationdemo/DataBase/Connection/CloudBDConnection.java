@@ -73,7 +73,7 @@ public class CloudBDConnection {
     }
 
     // 用户数据插入
-    public static void insert_user_info(String userName,String password) throws SQLException {
+    public static void insert_user_info(User user) {
         Connection connection = getConnection();
         if (connection == null) {
             System.out.println("获取数据库连接失败！");
@@ -81,10 +81,12 @@ public class CloudBDConnection {
         }
 
         try{
-            String sql = "INSERT INTO user (username,password) VALUES (?, ?)";
+            String sql = "INSERT INTO android (password,username) VALUES (?, ?)";
             try(PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setString(1, userName);
-                ps.setString(2, password);
+                ps.setString(1, user.getPassword());
+                ps.setString(2, user.getUsername());
+                ps.executeUpdate();
+                System.out.println("数据插入成功！！！");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +100,7 @@ public class CloudBDConnection {
     }
 
     // 用户数据查询
-    public static boolean select_user_info(String userName, String password) throws SQLException {
+    public static boolean select_user_info(User user){
         Connection connection = getConnection();
         if (connection == null) {
             System.out.println("获取数据库连接失败！");
@@ -109,8 +111,8 @@ public class CloudBDConnection {
             String sql = "SELECT * FROM android WHERE username=? AND password=?";
             boolean result = false;
             try(PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setString(1, userName);
-                ps.setString(2,password);
+                ps.setString(1, user.getUsername());
+                ps.setString(2,user.getPassword());
                 ResultSet rs = ps.executeQuery();
                 result = rs.next();
                 return result;
